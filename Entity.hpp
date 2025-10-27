@@ -17,12 +17,20 @@ class Entity
     Entity(size_t, std::string);
 
 public:
+    template<typename T, typename... Targs>
+    T& addComponent(Targs&&...);
 
-    void addComponent();
+    template<typename T>
     void removeComponent();
-    bool hasComponent();
-    Componenet& getComponent();
-    ComponentTag getTag();
+
+    template<typename T>
+    bool hasComponent() const;
+
+    template<typename T>
+    Componenet& getComponent() const;
+
+
+    const std::string& getTag() const;
     bool isAlive();
     void destroy();
 
