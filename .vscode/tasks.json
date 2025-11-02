@@ -28,11 +28,13 @@
             "label": "C/C++: g++ build active file",
             "command": "/usr/bin/g++",
             "args": [
+                "-std=c++20",
                 "-fdiagnostics-color=always",
                 "-g",
                 "${file}",
                 "-o",
-                "${fileDirname}/${fileBasenameNoExtension}"
+                "${fileDirname}/${fileBasenameNoExtension}",
+                "-I/opt/homebrew/Cellar/sfml/3.0.2/include/"
             ],
             "options": {
                 "cwd": "${fileDirname}"

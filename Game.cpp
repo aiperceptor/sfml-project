@@ -67,18 +67,22 @@ void Game::readConfigFile()
 
 void Game::run()
 {
-    std::cout << "Running...." << std::endl;
+    spawnPlayer();
 
-    // run the program as long as the window is open
-    while (m_window.isOpen())
+    // main game loop
+    while (true)
     {
-        // check all the window's events that were triggered since the last iteration of the loop
-        while (const std::optional event = m_window.pollEvent())
-        {
-            // "close requested" event: we close the window
-            if (event->is<sf::Event::Closed>())
-                m_window.close();
-        }
+        m_entityManager.update();
+
+        sUserInput();
+        sEnemySpawner();
+        sMovement();
+        sCollision();
+        sRender();
+
+        // increment current frame
+        // might need to be moved when paused
+        m_currentFrame++;
     }
 }
 
@@ -94,7 +98,15 @@ void Game::sMovement()
     
 void Game::sUserInput()
 {
-
+    while (const std::optional event = m_window.pollEvent())
+    {
+        // "close requested" event: we close the window
+        if (event->is<sf::Event::Closed>())
+        {
+            m_window.close();
+            std::exit(0);
+        }
+    }
 }
     
 void Game::sLifeSpan()
@@ -119,10 +131,22 @@ void Game::sCollision()
 
 void Game::spawnPlayer()
 {
+    auto player = m_entityManager.addEntity("Player");
+    Vec2f center(m_windowConfig.width / 2, m_windowConfig.height / 2);
 
+    player->add<CShape>();
+
+    // player->addComponent<CTransform>(center, Vec2f(0, 0), 0);
+    // player->addComponent<CShape>(m_playerConfig.SR, \
+    //                             m_playerConfig.V, \
+    //                             sf::Color(m_playerConfig.FR, m_playerConfig.FG, m_playerConfig.FB), \
+    //                             sf::Color(m_playerConfig.OR, m_playerConfig.OG, m_playerConfig.OB), \
+    //                             m_playerConfig.OT);
+    // player->addComponent<CInput>();
+    // player->addComponent<CScore>(0);
 }
     
 void Game::spawnEnemy()
 {
-    
+
 }

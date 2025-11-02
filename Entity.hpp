@@ -8,17 +8,25 @@ class Entity
 {
     friend EntityManager;
 
-    ComponenetTuple m_components;
+    ComponentTuple m_components;
     bool            m_alive;
     std::string     m_tag;
     size_t          m_id;
 
-    Entity() = default;
+    // Entity() = default;
     Entity(size_t, std::string);
 
 public:
     template<typename T, typename... Targs>
     T& addComponent(Targs&&...);
+
+    template<typename T>
+    T& add()
+    {
+        auto& component = getComponent<T>();
+        component.exists = true;
+        return component;
+    }
 
     template<typename T>
     void removeComponent();
@@ -27,7 +35,7 @@ public:
     bool hasComponent() const;
 
     template<typename T>
-    Componenet& getComponent() const;
+    T& getComponent() const;
 
 
     const std::string& getTag() const;

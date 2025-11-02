@@ -7,7 +7,7 @@ enable_testing()
 
 find_package(SFML 3 COMPONENTS Graphics Window System REQUIRED)
 
-add_executable(${PROJECT_NAME} main.cpp Game.cpp EntityManager.cpp Entity.cpp)
+add_executable(${PROJECT_NAME} main.cpp Game.cpp Components.cpp EntityManager.cpp Entity.cpp)
 
 target_link_libraries(${PROJECT_NAME} PRIVATE SFML::System SFML::Window SFML::Graphics)
 

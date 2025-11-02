@@ -1,0 +1,5 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     '/Users/hazem/Developer/C++/learning/sfml-project/test/test'
+relocations:     []
+...

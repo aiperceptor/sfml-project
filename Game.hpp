@@ -3,6 +3,9 @@
 #include <fstream>
 #include <SFML/Graphics.hpp>
 #include "EntityManager.hpp"
+#include "Entity.hpp"
+#include "Components.hpp"
+#include "Vec2.hpp"
 
 struct WindowConfig { u_int width, height, frameLimit; bool isFullscreen;};
 struct Font { std::string name; int size, r, g, b; };
